@@ -1,12 +1,22 @@
 import React from 'react'
 
+// BUG: Cards show correct state name/icon but navigate to wrong state
+const WRONG_STATE_NAV = {
+  'Karnataka':      'Tamil Nadu',
+  'Maharashtra':    'Delhi',
+  'Telangana':      'Andhra Pradesh',
+  'Delhi':          'Karnataka',
+  'Tamil Nadu':     'Maharashtra',
+  'Andhra Pradesh': 'Telangana',
+}
+
 const STATES = [
-  { name: 'Karnataka', color: '#ffedd5', border: '#fb923c', icon: '🏰', count: '120+ Routes' },
-  { name: 'Maharashtra', color: '#fef3c7', border: '#f59e0b', icon: '🚢', count: '150+ Routes' },
-  { name: 'Telangana', color: '#ecfdf5', border: '#10b981', icon: '🏛️', count: '80+ Routes' },
-  { name: 'Delhi', color: '#eff6ff', border: '#3b82f6', icon: '🚇', count: '100+ Routes' },
-  { name: 'Tamil Nadu', color: '#fff1f2', border: '#f43f5e', icon: '🛕', count: '110+ Routes' },
-  { name: 'Andhra Pradesh', color: '#f5f3ff', border: '#8b5cf6', icon: '🌊', count: '90+ Routes' }
+  { name: 'Karnataka',      color: '#ffedd5', border: '#fb923c', icon: '🏰', count: '120+ Routes' },
+  { name: 'Maharashtra',    color: '#fef3c7', border: '#f59e0b', icon: '🚢', count: '150+ Routes' },
+  { name: 'Telangana',      color: '#ecfdf5', border: '#10b981', icon: '🏛️', count: '80+ Routes'  },
+  { name: 'Delhi',          color: '#eff6ff', border: '#3b82f6', icon: '🚇', count: '100+ Routes' },
+  { name: 'Tamil Nadu',     color: '#fff1f2', border: '#f43f5e', icon: '🛕', count: '110+ Routes' },
+  { name: 'Andhra Pradesh', color: '#f5f3ff', border: '#8b5cf6', icon: '🌊', count: '90+ Routes'  },
 ]
 
 function StateCards({ onStateClick }) {
@@ -20,13 +30,15 @@ function StateCards({ onStateClick }) {
       <div className="row g-4">
         {STATES.map((state) => (
           <div key={state.name} className="col-6 col-md-4 col-lg-2">
-            <div 
-              className="card border-0 rounded-4 transition-all hover-up p-4 text-center cursor-pointer shadow-sm"
-              onClick={() => onStateClick && onStateClick(state.name)}
-              style={{ 
-                backgroundColor: state.color, 
+            <div
+              className="card border-0 rounded-4 p-4 text-center cursor-pointer shadow-sm hover-up"
+              // BUG: navigates to wrong state
+              onClick={() => onStateClick && onStateClick(WRONG_STATE_NAV[state.name])}
+              style={{
+                backgroundColor: state.color,
                 borderLeft: `5px solid ${state.border}`,
-                transition: 'transform 0.2s ease'
+                transition: 'transform 0.2s ease',
+                cursor: 'pointer',
               }}
             >
               <div className="fs-1 mb-2">{state.icon}</div>
@@ -38,13 +50,8 @@ function StateCards({ onStateClick }) {
       </div>
 
       <style>{`
-        .hover-up:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 10px 20px rgba(0,0,0,0.05) !important;
-        }
-        .smallest {
-          font-size: 0.7rem;
-        }
+        .hover-up:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05) !important; }
+        .smallest { font-size: 0.7rem; }
       `}</style>
     </div>
   )
