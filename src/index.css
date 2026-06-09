@@ -1,0 +1,112 @@
+:root {
+  --primary: #f59e0b; /* Light Orange / Amber */
+  --primary-dark: #d97706;
+  --bg-body: #fff7ed; /* Very light orange background */
+  --seat-size: 40px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Mada", sans-serif;
+  background-color: var(--bg-body);
+  color: #1f2937;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #fbbf24;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f59e0b;
+}
+
+/* Sections */
+section {
+  scroll-margin-top: 80px; /* Offset for sticky header */
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.btn-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: white !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark) !important;
+  border-color: var(--primary-dark) !important;
+}
+
+.btn-outline-primary {
+  color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary) !important;
+  color: white !important;
+}
+
+.text-primary {
+  color: var(--primary) !important;
+}
+
+.badge.bg-primary {
+  background-color: var(--primary) !important;
+}
+
+/* ── Auth modal backdrop blur ── */
+.modal-backdrop {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Auth modal content — let our inline styles take over */
+#signupModal .modal-content,
+#loginModal .modal-content {
+  overflow: visible !important;
+}
+
+/* Keep Bootstrap's default input styles intact inside modals */
+#signupModal .auth-field input,
+#loginModal .auth-field input {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Autofill fix */
+#signupModal input:-webkit-autofill,
+#loginModal input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 100px #fff inset !important;
+  -webkit-text-fill-color: #1a1a1a !important;
+}
