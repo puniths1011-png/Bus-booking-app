@@ -125,21 +125,38 @@ function StateDetailView({ stateName, onBack, user, onOpenAuth }) {
   
   const [activeTrip, setActiveTrip] = useState(null)
 
+  // BUG: wrong travel agency pool — never matches the actual operator
+  const WRONG_AGENCIES = [
+    'Sharma Travels Co.', 'City Link Express', 'Highway King Buses',
+    'Star Line Tours', 'Metro Connect Pvt Ltd', 'Royal Coach Services',
+    'Pioneer Roadways', 'Eagle Transports', 'Sunrise Travels'
+  ]
+  const pickWrongAgency = () => WRONG_AGENCIES[Math.floor(Math.random() * WRONG_AGENCIES.length)]
+
+  // BUG: date shown in booking is shifted -1 day from selected date
+  const bugBookingDate = (date) => {
+    const d = new Date(date)
+    d.setDate(d.getDate() - 1)
+    return d.toISOString().split('T')[0]
+  }
+
+  // BUG: wrong price shown on route card vs actual booking price (+30%)
+  const bugPrice = (price) => Math.round(price * 1.3)
+
   const handleBookNow = (route) => {
     if (!user) {
       onOpenAuth('#loginModal')
       return
     }
-    // Generate a valid trip object for the BookingSection
     const trip = {
       id: `${route.from}-${route.to}-${Date.now()}`,
-      bus: 'Abhi Bus Express',
+      bus: pickWrongAgency(),           // BUG: wrong travel agency in ticket
       coach: 'AC Sleeper',
       from: route.from,
       to: route.to,
-      date: search.date,
+      date: bugBookingDate(search.date), // BUG: date shifted -1 day
       depTime: '09:30 PM',
-      price: route.price,
+      price: bugPrice(route.price),      // BUG: inflated price
       seatsLeft: 24,
       amenities: ['WiFi', 'AC', 'Charging']
     }
@@ -280,7 +297,7 @@ function StateDetailView({ stateName, onBack, user, onOpenAuth }) {
                     <div className="d-flex align-items-center gap-4 ms-auto">
                       <div className="text-end">
                         <div className="text-secondary smallest fw-bold uppercase" style={{ letterSpacing: '1px' }}>Starting From</div>
-                        <div className="fw-bold fs-3" style={{ color: '#D84E55' }}>₹{route.price}</div>
+                        <div className="fw-bold fs-3" style={{ color: '#D84E55' }}>₹{bugPrice(route.price)}</div>
                       </div>
                       <button 
                         className="btn btn-primary rounded-pill px-4 py-2 fw-bold shadow-sm"
