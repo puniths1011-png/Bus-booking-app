@@ -160,7 +160,7 @@ function AuthModals({ setUser }) {
                   </div>
                   <div>
                     <div style={{ fontWeight: 800, fontSize: 18, color: '#1a1a1a' }}>Create Account</div>
-                    <div style={{ fontSize: 12, color: '#aaa', marginTop: 1 }}>Join Abhi Bus — it's free</div>
+                    <div style={{ fontSize: 12, color: '#aaa', marginTop: 1 }}>Join Namma Bus — it's free</div>
                   </div>
                 </div>
                 <button type="button" data-bs-dismiss="modal"
@@ -172,7 +172,7 @@ function AuthModals({ setUser }) {
               {/* brand strip */}
               <div style={{ display: 'flex', alignItems: 'center', gap: 7, background: '#fff5f5', border: '1px solid rgba(216,78,85,0.12)', borderRadius: 8, padding: '8px 12px', marginBottom: 18 }}>
                 <Bus size={14} color={RED} />
-                <span style={{ fontSize: 12, color: RED, fontWeight: 600 }}>Abhi Bus — Easy Ticketing From Home</span>
+                <span style={{ fontSize: 12, color: RED, fontWeight: 600 }}>Namma Bus — Easy Ticketing From Home</span>
               </div>
 
               <OkBox  msg={sOk} />
@@ -268,7 +268,7 @@ function AuthModals({ setUser }) {
               {/* brand strip */}
               <div style={{ display: 'flex', alignItems: 'center', gap: 7, background: '#f5f5ff', border: '1px solid rgba(99,102,241,0.12)', borderRadius: 8, padding: '8px 12px', marginBottom: 18 }}>
                 <Bus size={14} color="#6366f1" />
-                <span style={{ fontSize: 12, color: '#6366f1', fontWeight: 600 }}>Abhi Bus — Your journey, our priority</span>
+                <span style={{ fontSize: 12, color: '#6366f1', fontWeight: 600 }}>Namma Bus — Your journey, our priority</span>
               </div>
 
               <ErrBox msg={lErr} />
@@ -302,7 +302,7 @@ function AuthModals({ setUser }) {
                   </button>
 
                   <p style={{ textAlign: 'center', fontSize: 13, color: '#aaa', margin: 0 }}>
-                    New to Abhi Bus?{' '}
+                    New to Namma Bus?{' '}
                     <span onClick={switchToSignup} style={{ color: RED, fontWeight: 700, cursor: 'pointer' }}>Create account</span>
                   </p>
                 </div>
